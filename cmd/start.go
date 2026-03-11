@@ -5,26 +5,22 @@ import (
 	"strconv"
 
 	"github.com/kasslima/pomodoro-cli/internal/pomodoro"
-	"github.com/kasslima/pomodoro-cli/internal/timer"
 	"github.com/spf13/cobra"
 )
 
 var startCmd = &cobra.Command{
-	Use: "start [minutes]",
+	Use:  "start [minutes]",
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 
-		minutesStr := args[0]
-
-		minutes, err := strconv.Atoi(minutesStr)
+		minutes, err := strconv.Atoi(args[0])
 		if err != nil {
 			fmt.Println("minutes must be a number")
 			return
 		}
 
-		timer := &timer.RealTimer{}
-		pomodoro := pomodoro.NewPomodoro(timer)
-
-		pomodoro.StartPomodoro(minutes)
+		service := pomodoro.NewService()
+		service.Start(minutes)
 	},
 }
 

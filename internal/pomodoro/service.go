@@ -1,6 +1,13 @@
 package pomodoro
 
-import "time"
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"time"
+
+	"github.com/kasslima/pomodoro-cli/internal/timer"
+)
 
 type Timer interface {
 	Wait(duration time.Duration)
@@ -11,13 +18,30 @@ type Pomodoro struct {
 	Timer    Timer
 }
 
-func NewPomodoro(timer Timer) *Pomodoro {
-	return &Pomodoro{
-		Timer: timer,
-	}
+func NewService() *Pomodoro {
+	return &Pomodoro{}
 }
 
-func (p *Pomodoro) StartPomodoro(duration int) {
-	p.Duration = duration
-	p.Timer.Wait(time.Duration(duration) * time.Minute)
+
+func (s *Pomodoro) Start(minutes int) {
+
+	pid := os.Getpid()
+	os.WriteFile("/tmp/pomodoro.pid", []byte(strconv.Itoa(pid)), 0644)
+
+	go timer.Start(minutes)
+}
+
+func (s *Pomodoro) Stop() {
+
+	data, err := os.ReadFile("/tmp/pomodoro.pid")
+	if err != nil {
+		fmt.Println("error reading pid file")
+		return
+	}
+
+	pid, _ := strconv.Atoi(string(data))
+
+	process, _ := os.FindProcess(pid)
+
+	process.Signal(os.Interrupt)
 }
