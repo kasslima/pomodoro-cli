@@ -1,2 +1,5 @@
-.exe*
 .env
+
+*.exe
+*.out
+pomodoro
