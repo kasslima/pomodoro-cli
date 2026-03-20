@@ -11,9 +11,9 @@ var stopCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		
-		pomodoro := pomodoro.NewService()
+		pom := pomodoro.NewService(getBlocksService())
 
-		pomodoro.Stop()
+		pom.Stop()
 
 		beeep.AppName = "pomodoro-cli"
 		beeep.Notify("Pomodoro", "Pomodoro finalizado!", "")

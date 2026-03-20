@@ -19,7 +19,7 @@ var startCmd = &cobra.Command{
 			return
 		}
 
-		service := pomodoro.NewService()
+		service := pomodoro.NewService(getBlocksService())
 		service.Start(minutes)
 	},
 }
