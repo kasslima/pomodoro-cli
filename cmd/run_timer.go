@@ -8,7 +8,7 @@ import (
 
 var runTimerCmd = &cobra.Command{
     Use:    "run-timer [minutes]",
-    Hidden: true, // não aparece no help
+    Hidden: true,
     Args:   cobra.ExactArgs(1),
     Run: func(cmd *cobra.Command, args []string) {
         minutes, _ := strconv.Atoi(args[0])

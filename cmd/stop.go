@@ -16,7 +16,7 @@ var stopCmd = &cobra.Command{
 		pom.Stop()
 
 		beeep.AppName = "pomodoro-cli"
-		beeep.Notify("Pomodoro", "Pomodoro finalizado!", "")
+		beeep.Notify("Pomodoro", "Pomodoro finished!", "")
 	},
 }
 

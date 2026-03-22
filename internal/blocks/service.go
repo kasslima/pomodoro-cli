@@ -53,9 +53,9 @@ func (s *blocksService) AddBlock(link string) error {
 	}
 	defer resp.Body.Close()
 	
-	// Como muitos sites retornam 403 ou 404 devido a anti-bots ou rotas inexistentes,
-	// qualquer resposta HTTP significa que o domínio existe. O erro de verdade
-	// occorre no client.Do quando a resolução de DNS falha.
+	// As many sites return 403 or 404 due to anti-bots or non-existent routes,
+	// any HTTP response means the domain exists. The real error
+	// occurs in client.Do when DNS resolution fails.
 	
 	return s.repo.AddBlock(link)
 }

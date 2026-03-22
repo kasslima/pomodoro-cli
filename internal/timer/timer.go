@@ -24,9 +24,9 @@ func Start(minutes int, blocksService blocks.BlocksService) {
 
     select {
     case <-time.After(time.Duration(minutes) * time.Minute):
-        beeep.Notify("Pomodoro", "Tempo acabou!", "")  // beeep, não beep
-        fmt.Println("🍅 Pomodoro finalizado")
+        beeep.Notify("Pomodoro", "Time's up!", "") 
+        fmt.Println("🍅 Pomodoro finished")
     case <-sig:
-        fmt.Println("⛔ Pomodoro cancelado")
+        fmt.Println("⛔ Pomodoro cancelled")
     }
 }
