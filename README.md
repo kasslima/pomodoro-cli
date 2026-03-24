@@ -19,6 +19,28 @@ Pomodoro CLI is a terminal-based productivity tool that helps you manage focus s
 
 ---
 
+## ⚠️ Important: Admin Privileges for Website Blocking
+
+Because Pomodoro CLI modifies your system's `hosts` file to block websites, you **must run the application with elevated privileges** when using the timer with active blocks.
+
+### How to run with elevated privileges:
+
+**Windows**:  
+1. Search for your terminal (Command Prompt, PowerShell, or Windows Terminal) in the Start Menu.
+2. Right-click and select **Run as administrator**.
+3. Run your commands normally:
+   ```bash
+   pomodoro-cli.exe start 25
+   ```
+
+**Linux / macOS**:  
+Use `sudo` before your commands:
+```bash
+sudo ./pomodoro-cli start 25
+```
+
+---
+
 ## Quick Start
 
 ```bash
